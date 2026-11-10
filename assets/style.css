@@ -146,21 +146,21 @@ h1, h2, h3 {
 
 .name-zh { font-family: var(--kai); font-weight: 400; }
 
-nav {
+.sidebar nav {
   display: grid;
   gap: 2px;
   margin-top: 23px;
 }
 
-nav a {
+.sidebar nav a {
   padding: 6px 8px;
   font-size: 13px;
   border-radius: 4px;
 }
 
-nav a:hover { background: var(--active); }
+.sidebar nav a:hover { background: var(--active); }
 
-nav a[aria-current="page"] {
+.sidebar nav a[aria-current="page"] {
   background: var(--active);
   color: var(--accent);
   font-weight: 600;
@@ -376,7 +376,7 @@ nav a[aria-current="page"] {
   cursor: pointer;
 }
 
-summary::-webkit-details-marker { display: none; }
+.paper-actions summary::-webkit-details-marker { display: none; }
 .paper-actions summary::before { content: "+" / ""; width: 1em; text-align: center; }
 .paper-actions details[open] summary::before { content: "−" / ""; }
 .paper-actions summary:hover, .paper-actions > .text-link:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -396,13 +396,49 @@ summary::-webkit-details-marker { display: none; }
   vertical-align: middle;
 }
 
-.reading { max-width: 680px; }
-.reading .page-head { margin-top: 24px; }
+.reading { --reading-width: 680px; }
+.reading .page-head { max-width: var(--reading-width); margin-top: 24px; }
 .reading .page-head h1 { margin-top: 9px; font-size: clamp(27px, 3.6vw, 38px); }
-.reading h2 { margin: 23px 0 8px; font-size: 21px; }
-.article-body p { margin-bottom: .75em; line-height: 1.85; }
+.article-copy, .article-outline { max-width: var(--reading-width); }
+.article-body { line-height: 1.85; }
+.article-body > h2 { margin-bottom: .45em; font-size: 1.65em; font-weight: 650; }
+.article-body > h3 { margin: 1.5em 0 .4em; font-size: 1.18em; }
+.article-body > :is(h2, h3) { line-height: 1.35; scroll-margin-top: 20px; }
+.article-body p { margin-bottom: .75em; }
+.article-divider { width: 50%; margin: 3.7em auto; border: 0; border-top: 1px solid var(--line); }
 .article-body a, .bio a, .paper-description a { color: var(--accent); text-decoration: underline; }
 .article-source { margin-top: 30px; }
+
+.article-outline {
+  margin: 0 0 1em;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.article-outline summary { color: var(--ink); cursor: pointer; font-weight: 600; }
+.article-outline ol { list-style: none; margin: 6px 0 0; padding: 0; }
+.article-outline .outline-h3 { padding-inline-start: 1em; }
+.article-outline a { display: block; padding: 4px 0; }
+.article-outline a:hover { color: var(--accent); text-decoration: underline; }
+
+@media (min-width: 1040px) {
+  .article-layout.has-outline {
+    display: grid;
+    grid-template-columns: minmax(0, var(--reading-width)) minmax(150px, 175px);
+    gap: clamp(20px, 2.4vw, 32px);
+    align-items: start;
+  }
+  .article-outline {
+    grid-area: 1 / 2;
+    position: sticky;
+    top: 20px;
+    max-height: calc(100svh - 40px);
+    overflow: auto;
+  }
+  .article-copy { grid-area: 1 / 1; }
+}
 
 .life-grid {
   display: grid;
@@ -444,8 +480,8 @@ summary::-webkit-details-marker { display: none; }
   }
   .brand-name { font-size: 17px; }
   .motto { font-size: 16px; }
-  nav { margin-top: 56px; }
-  nav a { padding: 7px 11px; font-size: 16px; }
+  .sidebar nav { margin-top: 56px; }
+  .sidebar nav a { padding: 7px 11px; font-size: 16px; }
   .hero { grid-template-columns: minmax(0, 1fr) clamp(200px, 22vw, 290px); }
   .hero h1 { font-size: clamp(43px, 4.7vw, 64px); }
   .hero-alternate { font-size: 22px; }
@@ -484,8 +520,8 @@ summary::-webkit-details-marker { display: none; }
   .identity .seal { width: 36px; height: 36px; grid-row: span 2; margin: 0; }
   .identity .brand-name { align-self: end; }
   .identity .motto { margin-top: 0; font-size: 13px; }
-  nav { display: flex; flex-wrap: wrap; gap: 2px 3px; margin-top: 11px; }
-  nav a { padding: 4px 6px; }
+  .sidebar nav { display: flex; flex-wrap: wrap; gap: 2px 3px; margin-top: 11px; }
+  .sidebar nav a { padding: 4px 6px; }
   .hero { gap: 17px; }
   .hero-portrait { justify-self: end; }
 }
