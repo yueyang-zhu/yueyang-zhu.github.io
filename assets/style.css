@@ -382,7 +382,7 @@ summary::-webkit-details-marker { display: none; }
 .paper-actions summary:hover, .paper-actions > .text-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .series-description { margin-top: 13px; color: var(--muted); }
-.sample-note { margin-top: 4px; color: var(--muted); font-size: 12px; }
+.sample-note, .paper-note { margin-top: 4px; color: var(--muted); font-size: 12px; }
 .entry-arrow { color: var(--accent); font: 15px var(--sans); }
 
 .language-note {
